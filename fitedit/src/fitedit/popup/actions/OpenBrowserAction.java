@@ -39,7 +39,6 @@ public class OpenBrowserAction implements IActionDelegate {
 		String prefix = Activator.getDefault().getPreferenceStore()
 				.getString(PreferenceConstants.P_URL_PREFIX);
 		String url = prefix + getFitnesseUrl(resouce.getFullPath().toString());
-		System.out.println("done.." + url);
 		openDesktopBrowser(url);
 	}
 
