@@ -46,10 +46,6 @@
             class="fitedit.handlers.RefreshIndexHandler"
             commandId="fitedit.commands.refreshIndexCommand">
       </handler>
-      <handler
-            class="fitedit.handlers.OpenBrowserHandler"
-            commandId="fitedit.commands.openBrowserCommand">
-      </handler>
    </extension>
    <extension
          point="org.eclipse.ui.bindings">

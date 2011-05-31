@@ -30,3 +30,5 @@ Export-Package: fitedit,
    org.eclipse.jface.text.presentation,
    org.eclipse.swt.graphics,
    org.eclipse.jface.text.rules"
+Bundle-ClassPath: lib/hsqldb-2.2.2.jar,
+ .

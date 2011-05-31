@@ -3,11 +3,16 @@ package fitedit.resource;
 import java.util.Arrays;
 import java.util.List;
 
+import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+
+import fitedit.Constants;
 
 public class FitResourceChangeListener implements IResourceChangeListener {
 
@@ -37,35 +42,36 @@ public class FitResourceChangeListener implements IResourceChangeListener {
 		 */
 		@Override
 		public boolean visit(IResourceDelta delta) throws CoreException {
-			StringBuffer buf = new StringBuffer(80);
 			switch (delta.getKind()) {
 			case IResourceDelta.ADDED:
-				buf.append("ADDED");
-				break;
 			case IResourceDelta.REMOVED:
-				buf.append("REMOVED");
-				break;
-			case IResourceDelta.CHANGED:
-				buf.append("CHANGED");
+				processResource(delta);
 				break;
 			default:
-				buf.append("[");
-				buf.append(delta.getKind());
-				buf.append("]");
 				break;
 			}
-			buf.append(" ");
-			buf.append(delta.getResource());
-			buf.append(" + ");
-			buf.append(delta.getResource().getFullPath());
-			buf.append(" + ");
-			buf.append(delta.getResource().getLocation());
-			buf.append(" + ");
-			buf.append(delta.getResource().getName());
-
-			System.out.println(buf);
 
 			return true;
+		}
+		
+		private void processResource(IResourceDelta delta){
+			IResource resource = delta.getResource();
+			if (resource == null) {
+				return;
+			}
+			
+			if (!Constants.CONTENT_TXT.equals(resource.getName())){
+				return;
+			}
+			
+			IContainer parent = resource.getParent();
+			
+			if (delta.getKind() == IResourceDelta.ADDED) {
+				ResourceDatabase.getInstance().add(parent.getName(), parent.getFullPath().toString());
+			}
+			if (delta.getKind() == IResourceDelta.REMOVED) {
+				ResourceDatabase.getInstance().delete(parent.getFullPath().toString());
+			}
 		}
 
 	}
