@@ -87,4 +87,14 @@ public class DBUtil {
 			
 		return result;
 	}
+
+	public Connection getCon() {
+		return con;
+	}
+
+	public void setCon(Connection con) {
+		this.con = con;
+	}
+	
+	
 }

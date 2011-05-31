@@ -9,10 +9,7 @@ import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-
-import fitedit.Constants;
 
 public class FitResourceChangeListener implements IResourceChangeListener {
 
@@ -53,24 +50,26 @@ public class FitResourceChangeListener implements IResourceChangeListener {
 
 			return true;
 		}
-		
-		private void processResource(IResourceDelta delta){
+
+		private void processResource(IResourceDelta delta) {
 			IResource resource = delta.getResource();
 			if (resource == null) {
 				return;
 			}
-			
-			if (!Constants.CONTENT_TXT.equals(resource.getName())){
+
+			if (!ResourceDatabase.isFitResouce(resource)) {
 				return;
 			}
-			
+
 			IContainer parent = resource.getParent();
-			
+
 			if (delta.getKind() == IResourceDelta.ADDED) {
-				ResourceDatabase.getInstance().add(parent.getName(), parent.getFullPath().toString());
+				ResourceDatabase.getInstance().add(parent.getName(),
+						parent.getFullPath().toString());
 			}
 			if (delta.getKind() == IResourceDelta.REMOVED) {
-				ResourceDatabase.getInstance().delete(parent.getFullPath().toString());
+				ResourceDatabase.getInstance().delete(
+						parent.getFullPath().toString());
 			}
 		}
 
