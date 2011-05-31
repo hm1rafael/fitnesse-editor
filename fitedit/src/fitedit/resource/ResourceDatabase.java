@@ -7,11 +7,16 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 
 import fitedit.Constants;
 import fitedit.utils.DBUtil;
@@ -108,18 +113,38 @@ public class ResourceDatabase {
 	}
 
 	private void createIndex() {
-		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-		try {
-			root.accept(new IResourceVisitor() {
+		Job job = new Job("Fitnesse Index") {
 
-				@Override
-				public boolean visit(IResource resource) throws CoreException {
-					registerFitResouce(resource);
-					return true;
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+				IProject[] projects = root.getProjects();
+				monitor.beginTask("Refreshing...", projects.length);
+				try {
+					int progress = 0;
+					for (IProject prj : projects) {
+						progress++;
+						monitor.worked(progress);
+
+						prj.accept(new IResourceVisitor() {
+
+							@Override
+							public boolean visit(IResource resource)
+									throws CoreException {
+								registerFitResouce(resource);
+								return true;
+							}
+						});
+					}
+				} catch (CoreException e) {
+					e.printStackTrace();
 				}
-			});
-		} catch (CoreException e) {
-			e.printStackTrace();
-		}
+
+				return Status.OK_STATUS;
+			}
+		};
+		job.setUser(true);
+		job.schedule();
+
 	}
 }
