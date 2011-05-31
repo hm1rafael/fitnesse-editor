@@ -19,7 +19,7 @@
       <page
             class="fitedit.preferences.FitPreferencePage"
             id="fitedit.preferences.FitPreferencePage"
-            name="Fitnesse Editor Preferences">
+            name="Fitnesse Editor">
       </page>
    </extension>
    <extension
@@ -27,6 +27,89 @@
       <initializer
             class="fitedit.preferences.PreferenceInitializer">
       </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="fitedit.commands.category"
+            name="FitEditor Action Category">
+      </category>
+      <command
+            categoryId="fitedit.commands.category"
+            id="fitedit.commands.refreshIndexCommand"
+            name="Refresh Indexes ...">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="fitedit.handlers.RefreshIndexHandler"
+            commandId="fitedit.commands.refreshIndexCommand">
+      </handler>
+      <handler
+            class="fitedit.handlers.OpenBrowserHandler"
+            commandId="fitedit.commands.openBrowserCommand">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="fitedit.commands.refreshIndexCommand"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+9">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               id="fitedit.menus.sampleMenu"
+               label="FitEditor"
+               mnemonic="M">
+            <command
+                  commandId="fitedit.commands.refreshIndexCommand"
+                  id="fitedit.menus.refreshIndexMenuCommand"
+                  mnemonic="S">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="fitedit.contribution1"
+            objectClass="org.eclipse.core.resources.IResource">
+         <menu
+               id="fitedit.menu1"
+               label="Fit Editor"
+               path="additions">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               class="fitedit.popup.actions.OpenBrowserAction"
+               enablesFor="1"
+               id="fitedit.newAction"
+               label="Open In Browser"
+               menubarPath="fitedit.menu1/group1">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editorActions">
+      <editorContribution
+            id="fitedit.editorContribution1"
+            targetID="fitedit.editorContribution1">
+         <action
+               class="fitedit.EditorActionDelegate1"
+               id="fitedit.action1"
+               label="label"
+               style="push">
+         </action>
+      </editorContribution>
    </extension>
 
 </plugin>

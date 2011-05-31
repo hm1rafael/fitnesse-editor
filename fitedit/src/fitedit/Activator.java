@@ -1,8 +1,12 @@
 package fitedit;
 
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+
+import fitedit.resource.FitResourceChangeListener;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -14,11 +18,15 @@ public class Activator extends AbstractUIPlugin {
 
 	// The shared instance
 	private static Activator plugin;
+
+	private FitResourceChangeListener fitResourceChangeListener;
 	
 	/**
 	 * The constructor
 	 */
 	public Activator() {
+		fitResourceChangeListener = new FitResourceChangeListener();
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(fitResourceChangeListener, IResourceChangeEvent.POST_CHANGE );
 	}
 
 	/*
@@ -35,6 +43,8 @@ public class Activator extends AbstractUIPlugin {
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
 	public void stop(BundleContext context) throws Exception {
+		ResourcesPlugin.getWorkspace()
+			.removeResourceChangeListener(fitResourceChangeListener);
 		plugin = null;
 		super.stop(context);
 	}
@@ -59,3 +69,4 @@ public class Activator extends AbstractUIPlugin {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
 }
+
