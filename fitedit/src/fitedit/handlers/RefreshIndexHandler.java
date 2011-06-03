@@ -4,7 +4,7 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 
-import fitedit.resource.ResourceDatabase;
+import fitedit.resource.FitResourceManager;
 
 /**
  * Our sample handler extends AbstractHandler, an IHandler base class.
@@ -24,8 +24,7 @@ public class RefreshIndexHandler extends AbstractHandler {
 	 * from the application context.
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		ResourceDatabase.getInstance().init(true);
-
+		FitResourceManager.getInstance().rebuildIndex();
 		return null;
 	}
 }

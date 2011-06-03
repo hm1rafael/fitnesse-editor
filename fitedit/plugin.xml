@@ -37,12 +37,12 @@
       <command
             categoryId="fitedit.commands.category"
             id="fitedit.commands.refreshIndexCommand"
-            name="Refresh Indexes ...">
+            name="Rebuild Fitnesse Index">
       </command>
       <command
             categoryId="fitedit.commands.category"
             id="fitedit.commands.openFitnesseCommand"
-            name="Open Fitnesse Command">
+            name="Open Fitnesse">
       </command>
    </extension>
    <extension
@@ -59,16 +59,10 @@
    <extension
          point="org.eclipse.ui.bindings">
       <key
-            commandId="fitedit.commands.refreshIndexCommand"
-            contextId="org.eclipse.ui.contexts.window"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="M1+9">
-      </key>
-      <key
             commandId="fitedit.commands.openFitnesseCommand"
             contextId="org.eclipse.ui.contexts.window"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="M1+6">
+            sequence="Ctrl+Shift+F">
       </key>
    </extension>
    <extension

@@ -57,19 +57,20 @@ public class FitResourceChangeListener implements IResourceChangeListener {
 				return;
 			}
 
-			if (!ResourceDatabase.isFitResouce(resource)) {
+			if (!FitResourceManager.isFitResouce(resource)) {
 				return;
 			}
 
 			IContainer parent = resource.getParent();
 
+			FitResource r = new FitResource(parent.getName(), parent
+					.getFullPath().toString());
+
 			if (delta.getKind() == IResourceDelta.ADDED) {
-				ResourceDatabase.getInstance().add(parent.getName(),
-						parent.getFullPath().toString());
+				FitResourceManager.getInstance().add(r);
 			}
 			if (delta.getKind() == IResourceDelta.REMOVED) {
-				ResourceDatabase.getInstance().delete(
-						parent.getFullPath().toString());
+				FitResourceManager.getInstance().remvoe(r);
 			}
 		}
 

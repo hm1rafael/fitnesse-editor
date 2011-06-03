@@ -65,12 +65,7 @@ public class FitResourceSelectionDialog extends FilteredItemsSelectionDialog {
 				FitResource a = (FitResource) arg0;
 				FitResource b = (FitResource) arg1;
 
-				int r = a.getName().compareTo(b.getName());
-				if (r == 0) {
-					r = a.getPath().compareTo(b.getPath());
-				}
-
-				return r;
+				return a.compareTo(b);
 			}
 		};
 	}
@@ -81,7 +76,18 @@ public class FitResourceSelectionDialog extends FilteredItemsSelectionDialog {
 			throws CoreException {
 		progressMonitor.beginTask("Open..", 10);
 
+		int total = 0;
+		int unit = FitResourceManager.getInstance().getResouces().size() / 10;
+		if (unit == 0) {
+			unit = 1;
+		}
+		int i = 0;
 		for (FitResource r : FitResourceManager.getInstance().getResouces()) {
+			i++;
+			if (i % unit == 0) {
+				total++;
+				progressMonitor.worked(total);
+			}
 			contentProvider.add(r, itemsFilter);
 		}
 

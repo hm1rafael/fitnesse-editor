@@ -38,6 +38,24 @@ public class FitResource implements Comparable<FitResource> {
 		if (cmp == 0) {
 			return getPath().compareTo(o.getPath());
 		}
-		return 0;
+		return cmp;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof FitResource)) {
+			return false;
+		}
+
+		FitResource o = (FitResource) obj;
+		if (!getName().equals(o.getName())) {
+			return false;
+		}
+		return getPath().equals(o.getPath());
+	}
+
+	@Override
+	public int hashCode() {
+		return name.hashCode() + path.hashCode();
 	}
 }

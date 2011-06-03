@@ -43,7 +43,7 @@ public class Activator extends AbstractUIPlugin {
 		plugin = this;
 
 		// start creating index
-		FitResourceManager.getInstance();
+		FitResourceManager.getInstance().rebuildIndex();
 	}
 
 	/*

@@ -19,22 +19,21 @@ import fitedit.Constants;
 
 public class FitResourceManager {
 	private static FitResourceManager instance;
-	private Set<FitResource> resouces = new TreeSet<FitResource>();
+	private Set<FitResource> resources = new TreeSet<FitResource>();
 
 	private FitResourceManager() {
-		createIndex();
 	}
 
 	public Set<FitResource> getResouces() {
-		return resouces;
+		return resources;
 	}
 
 	public void add(FitResource r) {
-		resouces.add(r);
+		resources.add(r);
 	}
 
 	public void remvoe(FitResource r) {
-		resouces.remove(r);
+		resources.remove(r);
 	}
 
 	public static FitResourceManager getInstance() {
@@ -80,6 +79,11 @@ public class FitResourceManager {
 		job.schedule();
 	}
 
+	public void rebuildIndex() {
+		resources.clear();
+		createIndex();
+	}
+
 	public static boolean isFitResouce(IResource resource) {
 		if (!Constants.CONTENT_TXT.equals(resource.getName())) {
 			return false;
@@ -103,7 +107,8 @@ public class FitResourceManager {
 			return;
 		}
 
-		resouces.add(new FitResource(parent.getName(), parent.getFullPath()
-				.toString()));
+		FitResource r = new FitResource(parent.getName(), parent.getFullPath()
+				.toString());
+		resources.add(r);
 	}
 }
