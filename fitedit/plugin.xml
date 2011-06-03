@@ -11,7 +11,7 @@
             filenames="content.txt"
             icon="icons/icon_doc.gif"
             id="fitedit.editors.FitnesseEditor"
-            name="Fitnesse Editor">
+            name="FitNesse Editor">
       </editor>
    </extension>
    <extension
@@ -19,7 +19,7 @@
       <page
             class="fitedit.preferences.FitPreferencePage"
             id="fitedit.preferences.FitPreferencePage"
-            name="Fitnesse Editor">
+            name="FitNesse">
       </page>
    </extension>
    <extension
@@ -37,12 +37,12 @@
       <command
             categoryId="fitedit.commands.category"
             id="fitedit.commands.refreshIndexCommand"
-            name="Rebuild Fitnesse Index">
+            name="Rebuild FitNesse Indexes">
       </command>
       <command
             categoryId="fitedit.commands.category"
             id="fitedit.commands.openFitnesseCommand"
-            name="Open Fitnesse">
+            name="Open FitNesse">
       </command>
    </extension>
    <extension
@@ -71,7 +71,7 @@
             locationURI="menu:org.eclipse.ui.main.menu?after=additions">
          <menu
                id="fitedit.menus.fitMenu"
-               label="FitEditor"
+               label="FitNesse"
                mnemonic="M">
             <command
                   commandId="fitedit.commands.refreshIndexCommand"
@@ -93,7 +93,7 @@
             objectClass="org.eclipse.core.resources.IResource">
          <menu
                id="fitedit.menu1"
-               label="Fit Editor"
+               label="FitNesse"
                path="additions">
             <separator
                   name="group1">

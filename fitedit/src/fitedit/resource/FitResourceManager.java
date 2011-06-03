@@ -58,6 +58,9 @@ public class FitResourceManager {
 						progress++;
 						monitor.worked(progress);
 
+						if (!prj.isAccessible()) {
+							continue;
+						}
 						prj.accept(new IResourceVisitor() {
 
 							@Override

@@ -40,7 +40,7 @@ public class OpenFitnesseResouceHandler extends AbstractHandler {
 
 		FitResourceSelectionDialog dialog = new FitResourceSelectionDialog(
 				window.getShell(), true);
-		dialog.setTitle("Open Fitnesse");
+		dialog.setTitle("Open FitNesse");
 		int returnCode = dialog.open();
 
 		if (returnCode != FitResourceSelectionDialog.OK) {

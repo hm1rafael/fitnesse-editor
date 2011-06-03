@@ -24,7 +24,7 @@ public class FitPreferencePage extends FieldEditorPreferencePage implements
 	public FitPreferencePage() {
 		super(GRID);
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());
-		setDescription("Preference Page for Fitnesse Editor");
+		setDescription("Preference Page for FitNesse Editor");
 	}
 
 	/**
