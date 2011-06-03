@@ -11,22 +11,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IStatus;
+
 public class DBUtil {
-	
+
 	Connection con;
-	
+
 	public DBUtil(Connection con) {
 		this.con = con;
 	}
-	
-	public int execute(String sql, Object ... args) {
-		System.out.println("executing ... [" + sql + "] with " + Arrays.asList(args));
-		
+
+	public int execute(String sql, Object... args) {
+		LoggingUtil.log(IStatus.OK, "executing ... [" + sql + "] with "
+				+ Arrays.asList(args));
+
 		PreparedStatement pst = null;
 		try {
 			pst = con.prepareStatement(sql);
 			for (int i = 0; i < args.length; i++) {
-				pst.setObject(i+1, args[i]);
+				pst.setObject(i + 1, args[i]);
 			}
 			return pst.executeUpdate();
 		} catch (SQLException e) {
@@ -40,26 +43,27 @@ public class DBUtil {
 				}
 			}
 		}
-			
+
 		return 0;
 	}
-	
-	public List<Map<String, Object>> select(String sql, Object ... args) {
-		System.out.println("selecting ... [" + sql + "] with " + Arrays.asList(args));
-		
-		List<Map<String, Object>> result = new ArrayList<Map<String,Object>>();
-		
+
+	public List<Map<String, Object>> select(String sql, Object... args) {
+		LoggingUtil.log(IStatus.OK, "selecting ... [" + sql + "] with "
+				+ Arrays.asList(args));
+
+		List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
+
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 		try {
 			pst = con.prepareStatement(sql);
 			for (int i = 0; i < args.length; i++) {
-				pst.setObject(i+1, args[i]);
+				pst.setObject(i + 1, args[i]);
 			}
-			
+
 			rs = pst.executeQuery();
 			ResultSetMetaData rsMetaData = rs.getMetaData();
-			while(rs.next()){
+			while (rs.next()) {
 				Map<String, Object> row = new HashMap<String, Object>();
 				for (int i = 1; i <= rsMetaData.getColumnCount(); i++) {
 					row.put(rsMetaData.getColumnName(i), rs.getObject(i));
@@ -84,7 +88,7 @@ public class DBUtil {
 				}
 			}
 		}
-			
+
 		return result;
 	}
 
@@ -95,6 +99,5 @@ public class DBUtil {
 	public void setCon(Connection con) {
 		this.con = con;
 	}
-	
-	
+
 }

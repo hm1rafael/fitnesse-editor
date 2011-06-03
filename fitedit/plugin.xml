@@ -39,12 +39,21 @@
             id="fitedit.commands.refreshIndexCommand"
             name="Refresh Indexes ...">
       </command>
+      <command
+            categoryId="fitedit.commands.category"
+            id="fitedit.commands.openFitnesseCommand"
+            name="Open Fitnesse Command">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
             class="fitedit.handlers.RefreshIndexHandler"
             commandId="fitedit.commands.refreshIndexCommand">
+      </handler>
+      <handler
+            class="fitedit.handlers.OpenFitnesseResouceHandler"
+            commandId="fitedit.commands.openFitnesseCommand">
       </handler>
    </extension>
    <extension
@@ -55,18 +64,29 @@
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="M1+9">
       </key>
+      <key
+            commandId="fitedit.commands.openFitnesseCommand"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+6">
+      </key>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
             locationURI="menu:org.eclipse.ui.main.menu?after=additions">
          <menu
-               id="fitedit.menus.sampleMenu"
+               id="fitedit.menus.fitMenu"
                label="FitEditor"
                mnemonic="M">
             <command
                   commandId="fitedit.commands.refreshIndexCommand"
                   id="fitedit.menus.refreshIndexMenuCommand"
+                  mnemonic="S">
+            </command>
+            <command
+                  commandId="fitedit.commands.openFitnesseCommand"
+                  id="fitedit.menus.openFitnesseCommand"
                   mnemonic="S">
             </command>
          </menu>
