@@ -11,7 +11,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.views;bundle-version="3.1.0",
  org.eclipse.ui.ide;bundle-version="3.1.0",
  org.eclipse.core.resources;bundle-version="3.1.0",
- org.junit
+ org.junit,
+ org.eclipse.core.expressions
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: Toshiyuki Fukuzawa
@@ -30,4 +31,5 @@ Export-Package: fitedit,
    org.eclipse.jface.text.presentation,
    org.eclipse.swt.graphics,
    org.eclipse.jface.text.rules"
-Bundle-ClassPath: .
+Bundle-ClassPath: .,
+ lib/js-1.7-R3.jar

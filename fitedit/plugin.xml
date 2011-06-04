@@ -44,6 +44,11 @@
             id="fitedit.commands.openFitnesseCommand"
             name="Open FitNesse">
       </command>
+      <command
+            categoryId="fitedit.commands.category"
+            id="fitedit.command.format"
+            name="FitNesse Format">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -54,6 +59,10 @@
       <handler
             class="fitedit.handlers.OpenFitnesseResouceHandler"
             commandId="fitedit.commands.openFitnesseCommand">
+      </handler>
+      <handler
+            class="fitedit.handlers.FormatHandler"
+            commandId="fitedit.command.format">
       </handler>
    </extension>
    <extension
@@ -82,6 +91,22 @@
                   commandId="fitedit.commands.openFitnesseCommand"
                   id="fitedit.menus.openFitnesseCommand"
                   mnemonic="S">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:#TextEditorContext?after=additions">
+         <menu
+               label="FitNesse">
+            <command
+                  commandId="fitedit.command.format"
+                  label="Format"
+                  style="push">
+               <visibleWhen>
+                  <reference
+                        definitionId="fitedit.definition.activeEditor">
+                  </reference>
+               </visibleWhen>
             </command>
          </menu>
       </menuContribution>
@@ -120,6 +145,18 @@
                style="push">
          </action>
       </editorContribution>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="fitedit.definition.activeEditor">
+         <with
+               variable="activeEditorId">
+            <equals
+                  value="fitedit.editors.FitnesseEditor">
+            </equals>
+         </with>
+      </definition>
    </extension>
 
 </plugin>
