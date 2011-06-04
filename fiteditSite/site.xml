@@ -3,7 +3,9 @@
    <description name="http://fitnesse-editor.googlecode.com/svn/trunk/fiteditSite/" url="http://fitnesse-editor.googlecode.com/svn/trunk/fiteditSite/">
       fitnesse edit site
    </description>
-   <feature url="features/fiteditFeature_1.3.0.v20110604.jar" id="fiteditFeature" version="1.3.0.v20110604"/>
+   <feature url="features/fiteditFeature_1.3.0.v20110604.jar" id="fiteditFeature" version="1.3.0.v20110604">
+      <category name="fitedit"/>
+   </feature>
    <category-def name="fitedit" label="Fitnesse Editor">
       <description>
          Fitnesse Editor adding support to write a fitnesse testcase within Eclipse IDE.
