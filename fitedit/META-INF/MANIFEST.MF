@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Fitedit
 Bundle-SymbolicName: fitedit; singleton:=true
-Bundle-Version: 1.3.0.v20110603
+Bundle-Version: 1.3.0.v20110604
 Bundle-Activator: fitedit.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
