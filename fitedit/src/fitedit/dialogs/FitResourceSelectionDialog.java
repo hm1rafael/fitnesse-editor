@@ -48,7 +48,7 @@ public class FitResourceSelectionDialog extends FilteredItemsSelectionDialog {
 		return new ItemsFilter() {
 			public boolean matchItem(Object item) {
 				FitResource r = (FitResource) item;
-				return matches(r.getName().toString());
+				return matches(r.getName());
 			}
 
 			public boolean isConsistentItem(Object item) {
@@ -97,7 +97,7 @@ public class FitResourceSelectionDialog extends FilteredItemsSelectionDialog {
 	@Override
 	public String getElementName(Object item) {
 		FitResource r = (FitResource) item;
-		return r.getName().toString();
+		return r.getName();
 	}
 
 }

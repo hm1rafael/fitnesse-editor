@@ -96,6 +96,11 @@ public class FitResourceManager {
 			return false;
 		}
 
+		if (resource.getFullPath().toString()
+				.indexOf(Constants.ERROR_LOGS_DIR_NAME) > 0) {
+			return false;
+		}
+
 		return true;
 	}
 

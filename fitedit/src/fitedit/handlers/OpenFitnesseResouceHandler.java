@@ -14,6 +14,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.ide.IDE;
 
 import fitedit.Constants;
+import fitedit.dialogs.FitResourceLabelProvider;
 import fitedit.dialogs.FitResourceSelectionDialog;
 import fitedit.resource.FitResource;
 
@@ -40,6 +41,7 @@ public class OpenFitnesseResouceHandler extends AbstractHandler {
 
 		FitResourceSelectionDialog dialog = new FitResourceSelectionDialog(
 				window.getShell(), true);
+		dialog.setListLabelProvider(new FitResourceLabelProvider());
 		dialog.setTitle("Open FitNesse");
 		int returnCode = dialog.open();
 

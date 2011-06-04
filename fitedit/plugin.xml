@@ -80,7 +80,7 @@
             commandId="fitedit.commands.openFitnesseCommand"
             contextId="org.eclipse.ui.contexts.window"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="Ctrl+Shift+F">
+            sequence="Ctrl+Shift+Z">
       </key>
    </extension>
    <extension
