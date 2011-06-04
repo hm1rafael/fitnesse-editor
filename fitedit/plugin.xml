@@ -49,6 +49,11 @@
             id="fitedit.command.format"
             name="FitNesse Format">
       </command>
+      <command
+            categoryId="fitedit.commands.category"
+            id="fitedit.command.openBrowser"
+            name="Open In Browser">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -63,6 +68,10 @@
       <handler
             class="fitedit.handlers.FormatHandler"
             commandId="fitedit.command.format">
+      </handler>
+      <handler
+            class="fitedit.handlers.OpenBrowserHandler"
+            commandId="fitedit.command.openBrowser">
       </handler>
    </extension>
    <extension
@@ -83,11 +92,6 @@
                label="FitNesse"
                mnemonic="M">
             <command
-                  commandId="fitedit.commands.refreshIndexCommand"
-                  id="fitedit.menus.refreshIndexMenuCommand"
-                  mnemonic="S">
-            </command>
-            <command
                   commandId="fitedit.commands.openFitnesseCommand"
                   id="fitedit.menus.openFitnesseCommand"
                   mnemonic="S">
@@ -101,6 +105,16 @@
             <command
                   commandId="fitedit.command.format"
                   label="Format"
+                  style="push">
+               <visibleWhen>
+                  <reference
+                        definitionId="fitedit.definition.activeEditor">
+                  </reference>
+               </visibleWhen>
+            </command>
+            <command
+                  commandId="fitedit.command.openBrowser"
+                  label="Open In Browser"
                   style="push">
                <visibleWhen>
                   <reference
